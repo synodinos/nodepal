@@ -1,0 +1,9 @@
+{
+  "name": "nodepal",
+  "version": "0.0.1",
+  "description": "A Drupal integration layer for Node.js developers",
+  "author": "Dionysios G. Synodinos <synodinos@gmail.com>",
+  "dependencies": {
+    "mysql": ">= 0.8.0"
+  }
+}

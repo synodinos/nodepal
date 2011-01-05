@@ -4,9 +4,9 @@
 exports.test = {
 	host: 'localhost',
 	port: 3306,
-	user: 'A_USERNAME_FOR_DRUPAL_DB',
-	password: 'A_PASSWD_FOR DRUPAL_DB',
-	db: 'DRUPAL_DB_NAME',
+	user: 'root',   // The username to access the Drupal DB
+	password: '', // The password to access the Drupal DB. It shouldn't be empty in production
+	db: 'nodepal',               // The Drupal DB name
   // You can find the value of your sssion by looking into the Drupal session cookie.
-  session: 'SESS0000000000000000000000000000000'
+  session: 'SESS421aa90e079fa326b6494f812ad13e79'
 }

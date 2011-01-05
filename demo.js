@@ -17,12 +17,14 @@ client.connect();
 // Specify the Drupal database name
 client.query('USE ' + settings.db);
 
-// Import the functions you need from nodepal
+// Import the functions you need from nodepal.js
 var rolesByUid = require('./nodepal').rolesByUid;
 var permissionsByUid = require('./nodepal').permissionsByUid;
 var userByUid = require('./nodepal').userByUid;
 var sessionByUid = require('./nodepal').sessionByUid;
 var uidBySid = require('./nodepal').uidBySid;
+var nodeByNid = require('./nodepal').nodeByNid;
+var nodeAccess = require('./nodepal').nodeAccess;
 
 // Import http
 var http = require('http');
@@ -51,8 +53,15 @@ http.createServer(function (req, res) {
             html += "<pre>\nYour roles are => " + roles + "\n</pre>";
             permissionsByUid(client, uid[0].uid, function(permissions) {
               html += "<pre>\nAnd your permissions => " + JSON.stringify(permissions) + "\n</pre>";
-              res.write(html);
-              res.end();
+              nodeByNid(client, 1, function(node) {
+                html += "<pre>\nContent of node/1  => " + JSON.stringify(node) + "\n</pre>";
+                nodeAccess(client, 0, "view", 0, function(access) {
+                  html += "<pre>\nNode_access results for nid=0, gid=0, checking grant_view  => " +
+                          JSON.stringify(access) + "\n</pre>";
+                  res.write(html);
+                  res.end();
+                });
+              });
             });
           });
         });

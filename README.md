@@ -39,20 +39,31 @@ cookie. Also you must first create a user in Drupal, who has both roles and perm
 
 ## Install
 
-###Via npm:
+###Via git (preffered):
+
+    $ git clone http://github.com/synodinos/nodepal.git
+
+###Via npm (package might be old):
 
     $ npm install nodepal
 
 The only requirements are node and npm.
 
-###Via git:
-
-    $ git clone http://github.com/synodinos/nodepal.git
-
 You must have already downladed and installed node and [node-mysql](https://github.com/felixge/node-mysql).
+
+## FAQ
+
+### Why not have a Drupal Module, directly server JSON to Node.js
+
+Putting a PHP stack, between your data repository and Node.js might introduce a significant bottleneck. Nodepal is based
+on the idea that Node.js integrates with Drupal directly on the DB layer, for maximum performance!
+
+### I need to read/write X from/to my Drupal installation but there is no function in the Nodepal API for that.
+
+Drupal has a huge API and it's not possible to replicate it in Node.js. Nodepal aims to grow organically, adding new
+functionality, depending on what I need for my projects or what its users request. You can always develop your own
+ functionality using the current as template, or open a ticket and I'll try to add it.
 
 ## Support
 
 Email me and I'll see what I can do.
-
-

@@ -25,6 +25,7 @@ var sessionByUid = require('./nodepal').sessionByUid;
 var uidBySid = require('./nodepal').uidBySid;
 var nodeByNid = require('./nodepal').nodeByNid;
 var nodeAccess = require('./nodepal').nodeAccess;
+var getField = require('./nodepal').getField;
 
 // Import http
 var http = require('http');
@@ -58,8 +59,12 @@ http.createServer(function (req, res) {
                 nodeAccess(client, 0, "view", 0, function(access) {
                   html += "<pre>\nNode_access results for nid=0, gid=0, checking grant_view  => " +
                           JSON.stringify(access) + "\n</pre>";
-                  res.write(html);
-                  res.end();
+                  getField(client, 1, "test_field", function(field) {
+                    html += "<pre>\nIf your node/1 has a field named test_field, here is it's value  => " +
+                            JSON.stringify(field) + "\n</pre>";
+                    res.write(html);
+                    res.end();
+                  });
                 });
               });
             });

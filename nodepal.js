@@ -170,7 +170,7 @@ exports.nodeAccess = function(client, nid, operation, gid, callback) {
   client.query(
           'SELECT COUNT(*) FROM node_access WHERE nid="' + nid +
                   '" AND gid="' + gid +
-                  '" AND '+ grantOperation +'=1',
+                  '" AND ' + grantOperation + '=1',
           (function selectCb(err, results, fields) {
             if (err) {
               throw err;
@@ -181,6 +181,35 @@ exports.nodeAccess = function(client, nid, operation, gid, callback) {
               else access = false;
             }
             if (callback) callback(access);
+          })
+          );
+}
+
+// I've only tested it with single-valued text fields
+exports.getField = function(client, nid, fieldName, callback) {
+  var field = new Array();
+  var fieldColumnName = "field_" + fieldName + "_value";
+  client.query(
+          'SELECT type FROM node WHERE nid="' + nid + '"',
+          (function selectCb(err, results, fields) {
+            if (err) {
+              throw err;
+            }
+            for (result in results) {
+              field[result] = results[result].type;
+              client.query(
+                      'SELECT ' + fieldColumnName + ' FROM content_type_' + field[result] + ' WHERE nid="' + nid + '"',
+                      (function selectCb(err, results, fields) {
+                        if (err) {
+                          throw err;
+                        }
+                        for (result in results) {
+                          field[result] = results[result];
+                        }
+                        if (callback) callback(eval("field[result]." + fieldColumnName));
+                      })
+                      );
+            }
           })
           );
 }

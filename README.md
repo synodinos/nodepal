@@ -68,8 +68,8 @@ functionality, depending on what I need for my projects or what its users reques
 
 I'll try to keep track of 3rd party projects that are using Nodepal:
 
-- LimitedList: "Community Rankings for Everything", [service](http://limitedlist.com/) , [discussion](http://www.reddit.com/r/programming/comments/f0k70/drupal_nodejs_weekend_hack_review_and_ama/c1cho3p)
+- LimitedList: "Community Rankings for Everything". [service](http://limitedlist.com/) , [discussion](http://www.reddit.com/r/programming/comments/f0k70/drupal_nodejs_weekend_hack_review_and_ama/c1cho3p)
 
 ## Support
 
-[Email me](mailto://synodinos@gmail.com) and I'll see what I can do.
+[Email me](mailto:synodinos@gmail.com) and I'll see what I can do.

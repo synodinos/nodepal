@@ -43,7 +43,7 @@ cookie. Also you must first create a user in Drupal, who has both roles and perm
 
     $ git clone http://github.com/synodinos/nodepal.git
 
-###Via npm (package might be old):
+###Via npm (package might be older):
 
     $ npm install nodepal
 
@@ -53,7 +53,7 @@ You must have already downladed and installed node and [node-mysql](https://gith
 
 ## FAQ
 
-### Why not have a Drupal Module, directly server JSON to Node.js
+### Why not have a Drupal Module, directly serve JSON to Node.js
 
 Putting a PHP stack, between your data repository and Node.js might introduce a significant bottleneck. Nodepal is based
 on the idea that Node.js integrates with Drupal directly on the DB layer, for maximum performance!
@@ -63,6 +63,12 @@ on the idea that Node.js integrates with Drupal directly on the DB layer, for ma
 Drupal has a huge API and it's not possible to replicate it in Node.js. Nodepal aims to grow organically, adding new
 functionality, depending on what I need for my projects or what its users request. You can always develop your own
  functionality using the current as template, or open a ticket and I'll try to add it.
+
+## Who's using it
+
+I'll try to keep track of 3rd party projects that are using Nodepal:
+
+-LimitedList: "Community Rankings for Everything", [service](http://limitedlist.com/) , [discussion](http://www.reddit.com/r/programming/comments/f0k70/drupal_nodejs_weekend_hack_review_and_ama/c1cho3p)
 
 ## Support
 

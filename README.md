@@ -3,8 +3,8 @@
 ## A Drupal integration layer for Node.js developers
 
 This is a module that allows the integration of a Drupal installation with a custom Node.js app. It provides an API so
-that Node.js developers can directly read and write in Drupal's repository, using constracts like node, user,
-permission, etc., with having to worry about the underlying implementation and setup of the Drupal installation.
+that Node.js developers can directly read and write in Drupal's repository, using constructs like node, user,
+permission, etc., without having to worry about the underlying implementation and setup of the Drupal installation.
 
 
 ## Use Cases

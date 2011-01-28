@@ -1,7 +1,8 @@
 exports.rolesByUid = function(client, uid, callback) {
   var roles = new Array();
   client.query(
-          'SELECT rid FROM users_roles WHERE uid="' + uid + '"',
+          'SELECT rid FROM users_roles WHERE uid=?',
+          [uid],
           (function selectCb(err, results, fields) {
             if (err) {
               throw err;
@@ -17,7 +18,8 @@ exports.rolesByUid = function(client, uid, callback) {
 exports.permissionsByUid = function(client, rid, callback) {
   var permissions = new Array();
   client.query(
-          'SELECT pid, perm, tid FROM permission WHERE rid="' + rid + '"',
+          'SELECT pid, perm, tid FROM permission WHERE rid=?',
+          [rid],
           (function selectCb(err, results, fields) {
             if (err) {
               throw err;
@@ -37,7 +39,8 @@ exports.permissionsByUid = function(client, rid, callback) {
 exports.userByUid = function(client, uid, callback) {
   var user = new Array();
   client.query(
-          'SELECT * FROM users WHERE uid="' + uid + '"',
+          'SELECT * FROM users WHERE uid=?',
+          [uid],
           (function selectCb(err, results, fields) {
             if (err) {
               throw err;
@@ -76,7 +79,8 @@ exports.userByUid = function(client, uid, callback) {
 exports.nodeByNid = function(client, nid, callback) {
   var node = new Array();
   client.query(
-          'SELECT * FROM node WHERE nid="' + nid + '"',
+          'SELECT * FROM node WHERE nid=?',
+          [nid],
           (function selectCb(err, results, fields) {
             if (err) {
               throw err;
@@ -108,7 +112,8 @@ exports.nodeByNid = function(client, nid, callback) {
 exports.sessionByUid = function(client, uid, callback) {
   var session = new Array();
   client.query(
-          'SELECT * FROM sessions WHERE uid="' + uid + '"',
+          'SELECT * FROM sessions WHERE uid=?',
+          [uid],
           (function selectCb(err, results, fields) {
             if (err) {
               throw err;
@@ -130,7 +135,8 @@ exports.sessionByUid = function(client, uid, callback) {
 exports.uidBySid = function(client, sid, callback) {
   var uid = new Array();
   client.query(
-          'SELECT uid FROM sessions WHERE sid="' + sid + '"',
+          'SELECT uid FROM sessions WHERE sid=?',
+          [sid],
           (function selectCb(err, results, fields) {
             if (err) {
               throw err;
@@ -168,9 +174,8 @@ exports.nodeAccess = function(client, nid, operation, gid, callback) {
   }
 
   client.query(
-          'SELECT COUNT(*) FROM node_access WHERE nid="' + nid +
-                  '" AND gid="' + gid +
-                  '" AND ' + grantOperation + '=1',
+          'SELECT COUNT(*) FROM node_access WHERE nid=? AND gid=? AND ' + grantOperation + '=1',
+          [nid, gid],
           (function selectCb(err, results, fields) {
             if (err) {
               throw err;
@@ -190,7 +195,8 @@ exports.getField = function(client, nid, fieldName, callback) {
   var field = new Array();
   var fieldColumnName = "field_" + fieldName + "_value";
   client.query(
-          'SELECT type FROM node WHERE nid="' + nid + '"',
+          'SELECT type FROM node WHERE nid=?',
+          [nid],
           (function selectCb(err, results, fields) {
             if (err) {
               throw err;
@@ -198,7 +204,8 @@ exports.getField = function(client, nid, fieldName, callback) {
             for (result in results) {
               field[result] = results[result].type;
               client.query(
-                      'SELECT ' + fieldColumnName + ' FROM content_type_' + field[result] + ' WHERE nid="' + nid + '"',
+                      'SELECT ' + fieldColumnName + ' FROM content_type_' + field[result] + ' WHERE nid=?',
+                      [nid],
                       (function selectCb(err, results, fields) {
                         if (err) {
                           throw err;

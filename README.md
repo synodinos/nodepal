@@ -56,7 +56,7 @@ You must have already downladed and installed node and [node-mysql](https://gith
 ### Why not have a Drupal Module, directly serve JSON to Node.js
 
 Putting a PHP stack, between your data repository and Node.js might introduce a significant bottleneck. Nodepal is based
-on the idea that Node.js integrates with Drupal directly on the DB layer, for maximum performance!
+on the idea that Node.js integrates with Drupal directly on the DB layer, for maximum performance and scalability!
 
 ### I need to read/write X from/to my Drupal installation but there is no function in the Nodepal API for that.
 
